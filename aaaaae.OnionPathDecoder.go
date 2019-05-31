@@ -13,6 +13,14 @@ import (
 	"strings"
 )
 
+func init () {
+	iRegComp ("aaaaae", iInit_AAAAAE, iDnit_AAAAAE, nil)
+}
+
+func iInit_AAAAAE () {}
+
+func iDnit_AAAAAE () {}
+
 func iDecode_AAAAAE (onionPath string) (path string, err error) { /* This interface decodes an onion
 	filepath, into its genuine form.
 
@@ -76,7 +84,8 @@ func iDecode_AAAAAE (onionPath string) (path string, err error) { /* This interf
 		}
 
 		pathSeparator := fmt.Sprintf ("%c", os.PathSeparator)
-		onionPath = strings.Replace (onionPath, "./", (presentWorkingDir + pathSeparator), 1)
+		onionPath = strings.Replace (onionPath, "./", (presentWorkingDir + pathSeparator),
+			1)
 	}
 
 	/* In case the real form of the onion filepath is a symlink, the symlink will be evaluated
