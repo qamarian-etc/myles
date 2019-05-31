@@ -40,7 +40,7 @@ const dCONFILE_AAAAAG string = "./aaaaag.dConf.yml" /* You can modify this const
 	onion.*/
 
 func init () {
-	iRegComp ("aaaaag", iInit_AAAAAG, iDnit_AAAAAG, nil)
+	iRegComp ("aaaaag", iInit_AAAAAG, iDnit_AAAAAG, []string {"aaaaac", "aaaaae"})
 }
 
 func iInit_AAAAAG () { // The initialization basically means caching the configuration file.
@@ -49,7 +49,7 @@ func iInit_AAAAAG () { // The initialization basically means caching the configu
 	if errD != nil {
 		errMssg := fmt.Sprintf ("Could not decode my configuration file's filepath " +
 			"into its genuine form. [%s] (Conf Data Provider)", errD.Error ())
-		iOutpuT2_AAAAAC ("aaaaag", "err", errMssg)
+		iOutputT2_AAAAAC ("aaaaag", "err", errMssg)
 		os.Exit (1)
         }
 
@@ -58,7 +58,7 @@ func iInit_AAAAAG () { // The initialization basically means caching the configu
 	if errX != nil {
 		errMssg := fmt.Sprintf ("Could not load my configuration file. [%s] (Conf " +
 			"Data Provider)", errX.Error ())
-		iOutpuT2_AAAAAC ("aaaaag", "err", errMssg)
+		iOutputT2_AAAAAC ("aaaaag", "err", errMssg)
 		os.Exit (1)
         }
 
