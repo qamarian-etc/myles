@@ -56,6 +56,8 @@ func main () {/* This component does three things: it coordinates the init of ot
 	}
 	// ... }
 
+	iOutputT2_AAAAAC ("aaaaaa", "std", "Cloud app/service now running!")
+
 	// Keeps your app running until shutdown has been signalled.
         for {
                 select {
