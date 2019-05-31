@@ -1,60 +1,62 @@
 package main
 
-/* This is the main and single most important component of this framework. It starts your app and
-	can also be used to gracefully shutdown the app. */
+/* This is the main and the most important component of this framework. It starts your app and can
+	also be used to gracefully shut it down.
+
+	In addition, this component also help coordinate the initialization of the mylcoms of your
+		cloud app or service.
+
+	DEPENDENCY
+		Comp AAAAAC (Easy-to-read Output) */
 
 import (
 	"errors"
 	"fmt"
+	"github.com/qamarian-etc/slices"
 	"github.com/qamarian-dtp/system"
 	"os"
 	"runtime"
-	"sort"
 )
 
-func main () {
-        /* Continously checks if global shutdown has been signalled: if yes, the whole app built
-		on this framework would shutdown.*/
-	initOrder, errX, errDescp := dMyles.InitOrder ()
+func main () {/* This component does three things: it coordinates the init of other components in
+	your app, it keeps your app running until shutdown has been signalled, and it coordinates
+	the dnit of other components in your app. */
+
+	dRegCompleteStatus_AAAAAA = true
+
+        // Coordinattion of init. { ...
+	initOrder, errX, errDescp := dMyles_AAAAAA.InitOrder ()
 
 	switch errX {
-		case system.ElementMissing: {
-			errMssg := fmt.Sprintf ("It seems a component was not registered with me." +
-				"[%s: %s]", errX.Error (), errDescp)
+		case system.ErrElementMissing: {
+			errMssg := fmt.Sprintf ("It seems a component was not registered with " +
+			"me. [%s: %s]", errX.Error (), errDescp)
 			iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
 			os.Exit (1)
 		}
-		case system.CircleDetected: {
-			errMssg := fmt.Sprintf ("Cyclic dependency has been detected. [%s: %s]",
+		case system.ErrCircleDetected: {
+			errMssg := fmt.Sprintf ("Cyclic dependency has been detected. [%s: %s]" +
 				errX.Error (), errDescp)
 			iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
 			os.Exit (1)
 		}
 		case nil: break
 		default: {
-			errMssg := fmt.Sprintf ("Tried creating a safe init order of comp of this"
-				+ "system, but an error occured. [%s: %s]",
+			errMssg := fmt.Sprintf ("Tried creating a safe init order of comp of " +
+				"this system, but an error occured. [%s: %s]",
 				errX.Error (), errDescp)
 			iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
 			os.Exit (1)
 		}
 	}
 
-	for _, compID = range initOrder {
+	// Asking your app's mylcoms to init, one-after-the-other.
+	for _, compID := range initOrder {
 		dInitDnitFunc_AAAAAA [compID][0] ()
 	}
+	// ... }
 
-	revdInitOrder := sort.Reverse (initOrder)
-	dnitOrder, okX := revdInitOrder.([]string)
-	if okX == false {
-		errMssg := fmt.Sprintf ("Bug detected. You can check my source code to fix the "
-			+ "it yourself, or report it to my developer. Tacking no: tspot0. [Use "
-			+ "your text editor/IDE to find where the tracking no is, to easily "
-			+ "locate the place to start your debugging.]" )
-		iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
-		os.Exit (1)
-	}
-
+	// Keeps your app running until shutdown has been signalled.
         for {
                 select {
                         case _, _ = <- dShutdownChannel_AAAAAA: return
@@ -63,60 +65,78 @@ func main () {
 
                 runtime.Gosched ()
         }
-
-	for _, compID = range dnitOrder {
-		dInitDnitFunc_AAAAAA [compID][1] ()
-	}
 }
 
-func iRegComp (compID string, initFunc, dnitFunc func (), depID []string) (error) { /* */
-	if dRegCompleteStatus_AAAAAA = true {
+func iRegComp (compID string, initFunc, dnitFunc func (), depID []string) (error) { /* To register
+	a component, this interface can be called. If a registration fails when your app has just
+	started, this interface halts the app. If a registration fails quite long after your app
+	has started, this interface returns an error.
+
+	INPUT
+	input 0: The ID of the component trying to register itself.
+	input 1: The init func of the comp. Nil not allowed.
+	input 2: The dnit func of the comp. Nil not allowed.
+	input 3: An array of the IDs of all comps depended on.
+
+	OUTPT
+	outpt 0: If registration succeeds, value would be nil error. Otherwise, value will be an
+		actual error. Possible errors include: eRegPast_AAAAAA.
+*/
+	if dRegCompleteStatus_AAAAAA == true {
 		return eRegPast_AAAAAA
 	}
 
 	if compID == "" {
-		errMssg := fmt.Sprintf ("Tried registering a comp, but the comp didn't provide "
-			+ "its id. Init func provided: '%s ()'; Dnit func provided: '%s ()'",
-			initFunc, dnitFunc)
+		errMssg := fmt.Sprintf ("Tried registering a comp, but the comp failed to pr" +
+		"ovide its id.")
 		iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
 		os.Exit (1)
 	}
 
 	if initFunc == nil {
-		errMssg := fmt.Sprintf ("Tried registering comp '%s', but it provided a nil "
-			+ "init func.", compID)
+		errMssg := fmt.Sprintf ("Tried registering comp '%s', but it provided a nil " +
+			"init func.", compID)
 		iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
-		os.Ext (1)
+		os.Exit (1)
 	}
 
 	if dnitFunc == nil {
-		errMssg := fmt.Sprintf ("Tried registering comp '%s', but it provided a nil "
-			+ "dnit func.", compID)
+		errMssg := fmt.Sprintf ("Tried registering comp '%s', but it provided a nil " +
+			"dnit func.", compID)
 		iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
-		os.Ext (1)
+		os.Exit (1)
 	}
 
 	errX := dMyles_AAAAAA.AddElement (compID, depID)
 	if errX == system.ErrAlreadyAdded {
-		errMssg := fmt.Sprintf ("Comp '%s' registering its init func for the 2nd time.",
-			compID)
-		iOutputT2_AAAAAA ("aaaaaa", "err", errMssg)
+		errMssg := fmt.Sprintf ("Comp '%s' registering itself for the 2nd time.", compID)
+		iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
 		os.Exit (1)
 	}
 
-	dInitFunc [compID] = []func () {initFunc, dnitFunc}
-	dRegCompleteStatus = true
+	dInitDnitFunc_AAAAAA [compID] = []func () {initFunc, dnitFunc}
+
+	return nil
 }
 
-func iShutdown_AAAAAA () { // To shutdown your app gracefully, this interface can be called.
+func iShutdown_AAAAAA () { /* To shutdown your app gracefully, this interface can be called.
+	However, before shutdown starts, all mylcoms registered would be asked to dnit. The dnit
+	would be done in the reverse order of init. This way dependencies would dnit last. */
+
+	initOrder, _, _ := dMyles_AAAAAA.InitOrder ()
+	dnitOrder := slices.RevStringSlice (initOrder)
+	for _, compID := range dnitOrder {
+		dInitDnitFunc_AAAAAA [compID][1] ()
+	}
+
         dShutdownChannel_AAAAAA <- true
 }
 
 var (
 	dRegCompleteStatus_AAAAAA bool = false
 
-	dMyles_AAAAAA system.System = system.New ()
-	dInitDnitFunc_AAAAAA map[string][]func ()
+	dMyles_AAAAAA *system.System = system.New ()
+	dInitDnitFunc_AAAAAA map[string][]func () = map[string][]func () {}
 
         dShutdownChannel_AAAAAA chan bool = make (chan bool, 1)
 
