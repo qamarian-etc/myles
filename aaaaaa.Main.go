@@ -9,6 +9,7 @@ import (
 	"github.com/qamarian-dtp/system"
 	"os"
 	"runtime"
+	"sort"
 )
 
 func main () {
@@ -40,7 +41,18 @@ func main () {
 	}
 
 	for _, compID = range initOrder {
-		dInitDnitFunc [compID][0] ()
+		dInitDnitFunc_AAAAAA [compID][0] ()
+	}
+
+	revdInitOrder := sort.Reverse (initOrder)
+	dnitOrder, okX := revdInitOrder.([]string)
+	if okX == false {
+		errMssg := fmt.Sprintf ("Bug detected. You can check my source code to fix the "
+			+ "it yourself, or report it to my developer. Tacking no: tspot0. [Use "
+			+ "your text editor/IDE to find where the tracking no is, to easily "
+			+ "locate the place to start your debugging.]" )
+		iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
+		os.Exit (1)
 	}
 
         for {
@@ -51,6 +63,10 @@ func main () {
 
                 runtime.Gosched ()
         }
+
+	for _, compID = range dnitOrder {
+		dInitDnitFunc_AAAAAA [compID][1] ()
+	}
 }
 
 func iRegComp (compID string, initFunc, dnitFunc func (), depID []string) (error) { /* */
@@ -98,8 +114,10 @@ func iShutdown_AAAAAA () { // To shutdown your app gracefully, this interface ca
 
 var (
 	dRegCompleteStatus_AAAAAA bool = false
+
 	dMyles_AAAAAA system.System = system.New ()
 	dInitDnitFunc_AAAAAA map[string][]func ()
+
         dShutdownChannel_AAAAAA chan bool = make (chan bool, 1)
 
 	eRegPast_AAAAAA error = errors.New ("Time for registration has passed.")
