@@ -19,8 +19,8 @@ func main () {
 
 	switch errX {
 		case system.ElementMissing: {
-			errMssg := fmt.Sprintf ("It seems a component was not registered with me."
-				+ "[%s: %s]", errX.Error (), errDescp)
+			errMssg := fmt.Sprintf ("It seems a component was not registered with me." +
+				"[%s: %s]", errX.Error (), errDescp)
 			iOutputT2_AAAAAC ("aaaaaa", "err", errMssg)
 			os.Exit (1)
 		}
