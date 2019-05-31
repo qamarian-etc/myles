@@ -50,7 +50,7 @@ func sOutput_AAAAAC (compID, oType, output string) {
 		oType = "std"
 	}
 
-	colourCode := map[string]string {"std": "28+b", "wrn": "226+b", "err": "9+b"}
+	colourCode := map[string]string {"std": "28+b", "wrn": "226+b", "err": "196+b"}
 	code := colourCode [oType]
 
 	fmt.Println (fmt.Sprintf ("\n    $ (%s): %s", ansi.Color (compID, code), output))
