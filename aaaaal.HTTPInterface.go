@@ -9,16 +9,25 @@ package main
                 2. If it finds a controller to handle the request, it handles the request over to
                         the controller, but if there are no controller to handle the request, error
                         404 is returned;
-                3. The controller can then decide what to do with the HTTP reuest.
+                3. The controller can then decide what to do with the HTTP request.
 
                 ** Controllers can be created in file "aaaaal.zController.go", and registered in
                         file "aaaaal.zRouter.go".
 
         DEPENDENCIES
-        Comp aaaaac (Customized output assistant)
-        Comp aaaaag (Configuration data provider)
-        Comp aaaaai (Critical Event Zain)
-        Comp aaaaak (Logger) */
+        Comp AAAAAC (Customized output assistant)
+        Comp AAAAAG (Configuration data provider)
+        Comp AAAAAI (Critical Event Zain)
+        Comp AAAAAK (Logger)
+
+	NOTES
+	1. Ensure the following conf data are registered with comp aaaaag:
+		AAAAAL.NetAddr
+		AAAAAL.NetPort
+		AAAAAL.MaxDurationForNetIO
+		AAAAAL.HttpMaxReqHeaderSize
+		AAAAAL.TLSCertBundle
+		AAAAAL.TLSPrivateKey */
 
 import (
         "context"
@@ -35,7 +44,7 @@ func init () {
                 "aaaaak"})
 }
 
-func iInit_AAAAAL () { 
+func iInit_AAAAAL () {
 	// Fetching network address and port to use. { ...
 	netAddr, errA := iScalarData_AAAAAG ("AAAAAL.NetAddr")
 	netPort, errB := iScalarData_AAAAAG ("AAAAAL.NetPort")
@@ -54,7 +63,7 @@ func iInit_AAAAAL () {
 	}
 	// ... }
 
-	// Fetching max duration allowed for net input/output. { ...	
+	// Fetching max duration allowed for net input/output. { ...
         netIODurationBeforeTimeout, errP := iScalarData_AAAAAG ("AAAAAL.MaxDurationForNetIO")
         if errP != nil {
                 output := fmt.Sprintf ("Tried fetching value of 'AAAAAL.MaxDurationForNetIO' from" +
@@ -99,7 +108,7 @@ func iInit_AAAAAL () {
         // ... }
 
         // Composing HTTP server details to be used. { ...
-	dServerInfo_AAAAAL := &http.Server {	
+	dServerInfo_AAAAAL := &http.Server {
                 Addr:            netAddr + ":" +  netPort,
                 ReadTimeout:     time.Duration (intNetIOMaxDuration) * time.Second,
                 WriteTimeout:    time.Duration (intNetIOMaxDuration) * time.Second,
