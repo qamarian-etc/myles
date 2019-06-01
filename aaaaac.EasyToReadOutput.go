@@ -9,6 +9,14 @@ import (
 	"github.com/mgutz/ansi"
 )
 
+func init () {
+	iRegComp ("aaaaac", iInit_AAAAAC, iDnit_AAAAAC, nil)
+}
+
+func iInit_AAAAAC () {}
+
+func iDnit_AAAAAC () {}
+
 func iOutputT2_AAAAAC (compID, oType, output string, moreOutput ... string) { /* This interface
 	can be used to output easy-to-read data. Unlike interface "iOutput_AAAAAC" which can be
 	used to make one out at a time, this interface can be used to make multiple outputs at
@@ -50,7 +58,7 @@ func sOutput_AAAAAC (compID, oType, output string) {
 		oType = "std"
 	}
 
-	colourCode := map[string]string {"std": "28+b", "wrn": "226+b", "err": "9+b"}
+	colourCode := map[string]string {"std": "28+b", "wrn": "226+b", "err": "196+b"}
 	code := colourCode [oType]
 
 	fmt.Println (fmt.Sprintf ("\n    $ (%s): %s", ansi.Color (compID, code), output))
