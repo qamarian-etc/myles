@@ -1,4 +1,4 @@
 package main
 
-var dRoutingRule_AAAAAL []routingRule_AAAAAL = []routingRule_AAAAAL {
+var dRoutingRule_AAAAAL []tRoutingRule_AAAAAL = []tRoutingRule_AAAAAL {
 }
