@@ -33,7 +33,7 @@ import (
 )
 
 func init () {
-	iRegComp ("aaaaak", iInit_AAAAAK, iDnit_AAAAAK, []string {"aaaaac", "aaaaae", "aaaaag",
+	iRegComp_AAAAAA ("aaaaak", iInit_AAAAAK, iDnit_AAAAAK, []string {"aaaaac", "aaaaae", "aaaaag",
 		"aaaaai"})
 }
 

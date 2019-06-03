@@ -10,7 +10,7 @@ import (
 )
 
 func init () {
-	iRegComp ("aaaaac", iInit_AAAAAC, iDnit_AAAAAC, nil)
+	iRegComp_AAAAAA ("aaaaac", iInit_AAAAAC, iDnit_AAAAAC, nil)
 }
 
 func iInit_AAAAAC () {}

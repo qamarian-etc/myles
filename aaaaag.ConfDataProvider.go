@@ -40,7 +40,7 @@ const dCONFILE_AAAAAG string = "./aaaaag.dConf.yml" /* You can modify this const
 	onion.*/
 
 func init () {
-	iRegComp ("aaaaag", iInit_AAAAAG, iDnit_AAAAAG, []string {"aaaaac", "aaaaae"})
+	iRegComp_AAAAAA ("aaaaag", iInit_AAAAAG, iDnit_AAAAAG, []string {"aaaaac", "aaaaae"})
 }
 
 func iInit_AAAAAG () { // The initialization basically means caching the configuration file.

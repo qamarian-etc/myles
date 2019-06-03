@@ -40,7 +40,7 @@ import (
 )
 
 func init () {
-        iRegComp ("aaaaal", iInit_AAAAAL, iDnit_AAAAAL, []string {"aaaaac", "aaaaag", "aaaaai",
+        iRegComp_AAAAAA ("aaaaal", iInit_AAAAAL, iDnit_AAAAAL, []string {"aaaaac", "aaaaag", "aaaaai",
                 "aaaaak"})
 }
 

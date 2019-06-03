@@ -4,7 +4,7 @@ package main
 	"aaaaai", for this component. */
 
 func init () {
-	iRegComp ("aaaaai", iInit_AAAAAI, iDnit_AAAAAI, nil)
+	iRegComp_AAAAAA ("aaaaai", iInit_AAAAAI, iDnit_AAAAAI, nil)
 }
 
 func iInit_AAAAAI () {}

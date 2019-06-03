@@ -69,10 +69,10 @@ func main () {/* This component does three things: it coordinates the init of ot
         }
 }
 
-func iRegComp (compID string, initFunc, dnitFunc func (), depID []string) (error) { /* To register
-	a component, this interface can be called. If a registration fails when your app has just
-	started, this interface halts the app. If a registration fails quite long after your app
-	has started, this interface returns an error.
+func iRegComp_AAAAAA (compID string, initFunc, dnitFunc func (), depID []string) (error) { /* To
+	register a component, this interface can be called. If a registration fails when your app
+	has just started, this interface halts the app. If a registration fails quite long after
+	your app has started, this interface returns an error.
 
 	INPUT
 	input 0: The ID of the component trying to register itself.
@@ -82,8 +82,8 @@ func iRegComp (compID string, initFunc, dnitFunc func (), depID []string) (error
 
 	OUTPT
 	outpt 0: If registration succeeds, value would be nil error. Otherwise, value will be an
-		actual error. Possible errors include: eRegPast_AAAAAA.
-*/
+		actual error. Possible errors include: eRegPast_AAAAAA. */
+
 	if dRegCompleteStatus_AAAAAA == true {
 		return eRegPast_AAAAAA
 	}
