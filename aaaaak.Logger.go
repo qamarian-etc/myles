@@ -41,7 +41,11 @@ func iInit_AAAAAK () {
 	// Getting the filepath of the log file. { ...
 	logfilePath, errT := iScalarData_AAAAAG ("AAAAAK_LogfilePath")
 
-	if errT != nil {
+	if errT == dErrNotSet_AAAAAG {
+		errMssg := fmt.Sprintf ("My logfile path is not set with comp AAAAAG. (Logger)")
+		iOutputT2_AAAAAC ("aaaaak", "err", errMssg)
+		os.Exit (1)
+	} else if errT != nil {
 		errMssg := fmt.Sprintf ("Unable to fetch the filepath of my log file. [%s] " +
 			"(Logger)", errT.Error ())
 		iOutputT2_AAAAAC ("aaaaak", "err", errMssg)
