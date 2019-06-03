@@ -21,7 +21,7 @@ package main
         Comp AAAAAK (Logger)
 
 	NOTES
-	1. Ensure the following conf data are registered with comp aaaaag:
+	1. Ensure the following conf data are registered with comp AAAAAG:
 		AAAAAL.NetAddr
 		AAAAAL.NetPort
 		AAAAAL.MaxDurationForNetIO
@@ -214,13 +214,13 @@ var (
 	dServerInfo_AAAAAL *http.Server // Information needed to run the interface's server.
 )
 
-type controller_AAAAAL func (http.ResponseWriter, *http.Request)
+type tController_AAAAAL func (http.ResponseWriter, *http.Request)
 
-func (controller controller_AAAAAL) ServeHTTP (res http.ResponseWriter, req *http.Request) {
+func (controller tController_AAAAAL) ServeHTTP (res http.ResponseWriter, req *http.Request) {
         controller (res, req)
 }
 
-type routingRule_AAAAAL struct {
+type tRoutingRule_AAAAAL struct {
 	route string
-	controller controller_AAAAAL
+	controller tController_AAAAAL
 }
