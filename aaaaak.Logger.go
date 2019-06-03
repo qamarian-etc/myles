@@ -19,7 +19,7 @@ package main
 	1. When about starting an app whose source code contains this component, do the following:
 
    		- create a log file, on the computer on which the app would run
-   		- set the logfile's path as conf data "AAAAAK_LogfilePath", in the conf file of
+   		- set the logfile's path as conf data "AAAAAK.LogfilePath", in the conf file of
    			dependency AAAAAG (remember "AAAAAG" was listed as one of the dependencies
    			needed by this component)
 
@@ -39,7 +39,7 @@ func init () {
 
 func iInit_AAAAAK () {
 	// Getting the filepath of the log file. { ...
-	logfilePath, errT := iScalarData_AAAAAG ("AAAAAK_LogfilePath")
+	logfilePath, errT := iScalarData_AAAAAG ("AAAAAK.LogfilePath")
 
 	if errT == dErrNotSet_AAAAAG {
 		errMssg := fmt.Sprintf ("My logfile path is not set with comp AAAAAG. (Logger)")
