@@ -9,12 +9,6 @@ package main
 	In short, this logger is designed not to degrade the performance of apps using it, unlike
 		most other loggers.
 
-	DEPENDENCIES
-   	Comp aaaaac (Easy-to-read output assistant)
-   	Comp aaaaae (Onion path decoder)
-   	Comp aaaaag (Configuration data provider)
-   	Comp aaaaai (Critical Event Zain)
-
 	USAGE NOTES
 	1. When about starting an app whose source code contains this component, do the following:
 
@@ -39,16 +33,16 @@ func init () {
 
 func iInit_AAAAAK () {
 	// Getting the filepath of the log file. { ...
-	logfilePath, errT := iScalarData_AAAAAG ("AAAAAK.LogfilePath")
+	logfilePath, errT := aaaaakDPConfProvider.ScalarData ("AAAAAK.LogfilePath")
 
 	if errT == dErrNotSet_AAAAAG {
 		errMssg := fmt.Sprintf ("My logfile path is not set with comp AAAAAG. (Logger)")
-		iOutputT2_AAAAAC ("aaaaak", "err", errMssg)
+		aaaaakDPOutAssist.Output ("aaaaak", "err", errMssg)
 		os.Exit (1)
 	} else if errT != nil {
 		errMssg := fmt.Sprintf ("Unable to fetch the filepath of my log file. [%s] " +
 			"(Logger)", errT.Error ())
-		iOutputT2_AAAAAC ("aaaaak", "err", errMssg)
+		aaaaakDPOutAssist.Output ("aaaaak", "err", errMssg)
 		os.Exit (1)
 	}
 	// ... }
@@ -57,7 +51,7 @@ func iInit_AAAAAK () {
 
 	// Halts app, if an empty string is set as the logfile's path.
 	if logfilePath == "" {
-		iOutputT2_AAAAAC ("aaaaak", "err", "Empty string was provided as my logfile " +
+		aaaaakDPOutAssist.Output ("aaaaak", "err", "Empty string was provided as my logfile " +
 			"path, in comp AAAAAG's conf file. (Logger)")
 		os.Exit (1)
 	}
@@ -69,7 +63,7 @@ func iInit_AAAAAK () {
 		errMssg := fmt.Sprintf ("Unable to decode my onion-formatted logfile path. " +
 			"Are you sure you provided me a valid onion filepath? [%s] (Logger)",
 			errV.Error ())
-		iOutputT2_AAAAAC ("aaaaak", "err", errMssg)
+		aaaaakDPOutAssist.Output ("aaaaak", "err", errMssg)
 		os.Exit (1)
 	}
 	// ... }
@@ -92,8 +86,8 @@ func cAAAAAK () {
         if errM != nil {
         	errMssg := fmt.Sprintf ("Logger has shutdown due to an error. [%s] (Logger)",
         		errM.Error ())
-                iOutputT2_AAAAAC ("aaaaak", "wrn", errMssg)
-                iBeInformed_AAAAAI ("AAAAAK: " + errMssg)
+                aaaaakDPOutAssist.Output ("aaaaak", "wrn", errMssg)
+                aaaaakDPCEZain.BeInformed ("AAAAAK: " + errMssg)
         }
 }
 
