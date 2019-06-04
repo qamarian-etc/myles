@@ -6,20 +6,20 @@ package main
    	Comp AAAAAG (Configuration data provider)
    	Comp AAAAAI (Critical Event Zain) */
 
-var aaaaakDPOutAssist interface {
+var dLSIOutAssist_AAAAAK interface {
 	Output (string, string, string, ... string)
 } = iNewLSIA_AAAAAC ()
 
-var aaaaakDPOnionDecoder interface {
+var dLSIOnionDecoder_AAAAAK interface {
 	Decode (string) (string, error)
 } = iNewLSIA_AAAAAE ()
 
-var aaaaakDPConfProvider interface {
+var dLSIConfProvider_AAAAAK interface {
 	ScalarData (string) (string, error)
 	SliceData (string) ([]string, error)
 	MapData (string) (map[string]string, error)
 } = iNewLSIA_AAAAAG ()
 
-var aaaaakDPCEZain interface {
+var dLSICEZain_AAAAAK interface {
 	BeInformed (string)
 } = iNewLSIA_AAAAAI ()

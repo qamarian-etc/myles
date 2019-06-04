@@ -33,16 +33,16 @@ func init () {
 
 func iInit_AAAAAK () {
 	// Getting the filepath of the log file. { ...
-	logfilePath, errT := aaaaakDPConfProvider.ScalarData ("AAAAAK.LogfilePath")
+	logfilePath, errT := dLSIConfProvider_AAAAAK.ScalarData ("AAAAAK.LogfilePath")
 
 	if errT == dErrNotSet_AAAAAG {
 		errMssg := fmt.Sprintf ("My logfile path is not set with comp AAAAAG. (Logger)")
-		aaaaakDPOutAssist.Output ("aaaaak", "err", errMssg)
+		dLSIOutAssist_AAAAAK.Output ("aaaaak", "err", errMssg)
 		os.Exit (1)
 	} else if errT != nil {
 		errMssg := fmt.Sprintf ("Unable to fetch the filepath of my log file. [%s] " +
 			"(Logger)", errT.Error ())
-		aaaaakDPOutAssist.Output ("aaaaak", "err", errMssg)
+		dLSIOutAssist_AAAAAK.Output ("aaaaak", "err", errMssg)
 		os.Exit (1)
 	}
 	// ... }
@@ -51,19 +51,19 @@ func iInit_AAAAAK () {
 
 	// Halts app, if an empty string is set as the logfile's path.
 	if logfilePath == "" {
-		aaaaakDPOutAssist.Output ("aaaaak", "err", "Empty string was provided as my logfile " +
+		dLSIOutAssist_AAAAAK.Output ("aaaaak", "err", "Empty string was provided as my logfile " +
 			"path, in comp AAAAAG's conf file. (Logger)")
 		os.Exit (1)
 	}
 
 	/* The filepath of your app's log file is expected to be onion-formatted, and this section
 		does the decoding of the filepath into its genuine form. { ... */
-	logfilePath, errV := iDecode_AAAAAE (logfilePath)
+	logfilePath, errV := dLSIOnionDecoder_AAAAAK.Decode (logfilePath)
 	if errV != nil {
 		errMssg := fmt.Sprintf ("Unable to decode my onion-formatted logfile path. " +
 			"Are you sure you provided me a valid onion filepath? [%s] (Logger)",
 			errV.Error ())
-		aaaaakDPOutAssist.Output ("aaaaak", "err", errMssg)
+		dLSIOutAssist_AAAAAK.Output ("aaaaak", "err", errMssg)
 		os.Exit (1)
 	}
 	// ... }
@@ -80,14 +80,12 @@ func cAAAAAK () {
 	defer func () {
 		recover ()
 	} ()
-
         errM := dLoggingInfo_AAAAAK.Logger (0)
-
         if errM != nil {
         	errMssg := fmt.Sprintf ("Logger has shutdown due to an error. [%s] (Logger)",
         		errM.Error ())
-                aaaaakDPOutAssist.Output ("aaaaak", "wrn", errMssg)
-                aaaaakDPCEZain.BeInformed ("AAAAAK: " + errMssg)
+                dLSIOutAssist_AAAAAK.Output ("aaaaak", "wrn", errMssg)
+                dLSICEZain_AAAAAK.BeInformed ("AAAAAK: " + errMssg)
         }
 }
 
@@ -111,7 +109,6 @@ func iRecord_AAAAAK (new_Log string) (error) { /* Call this interface, to record
 
 	// Recording log.
 	errX := dLoggingInfo_AAAAAK.Log (new_Log)
-
 	return errX
 }
 
@@ -120,7 +117,6 @@ func iShutdown_AAAAAK () {
 	defer func () {
 		recover ()
 	} ()
-
 	dLoggingInfo_AAAAAK.Shutdown ()
 }
 

@@ -32,13 +32,13 @@ func main () {/* This component does three things: it coordinates the init of ot
 		case system.ErrElementMissing: {
 			errMssg := fmt.Sprintf ("It seems a component was not registered with " +
 			"me. [%s: %s]", errX.Error (), errDescp)
-			dpOutAssit.Output ("aaaaaa", "err", errMssg)
+			dLSIOutAssit_AAAAAA.Output ("aaaaaa", "err", errMssg)
 			os.Exit (1)
 		}
 		case system.ErrCircleDetected: {
 			errMssg := fmt.Sprintf ("Cyclic dependency has been detected. [%s: %s]" +
 				errX.Error (), errDescp)
-			dpOutAssit.Output ("aaaaaa", "err", errMssg)
+			dLSIOutAssit_AAAAAA.Output ("aaaaaa", "err", errMssg)
 			os.Exit (1)
 		}
 		case nil: break
@@ -46,7 +46,7 @@ func main () {/* This component does three things: it coordinates the init of ot
 			errMssg := fmt.Sprintf ("Tried creating a safe init order of comp of " +
 				"this system, but an error occured. [%s: %s]",
 				errX.Error (), errDescp)
-			dpOutAssit.Output ("aaaaaa", "err", errMssg)
+			dLSIOutAssit_AAAAAA.Output ("aaaaaa", "err", errMssg)
 			os.Exit (1)
 		}
 	}
@@ -57,7 +57,7 @@ func main () {/* This component does three things: it coordinates the init of ot
 	}
 	// ... }
 
-	dpOutAssit.Output ("aaaaaa", "std", "Cloud app/service now running!")
+	dLSIOutAssit_AAAAAA.Output ("aaaaaa", "std", "Cloud app/service now running!")
 
 	// Keeps your app running until shutdown has been signalled.
         for {
@@ -90,19 +90,19 @@ func iRegComp_AAAAAA (compID string, initFunc, dnitFunc func (), depID []string)
 	if compID == "" {
 		errMssg := fmt.Sprintf ("Tried registering a comp, but the comp failed to pr" +
 		"ovide its id.")
-		dpOutAssit.Output ("aaaaaa", "err", errMssg)
+		dLSIOutAssit_AAAAAA.Output ("aaaaaa", "err", errMssg)
 		os.Exit (1)
 	}
 	if initFunc == nil {
 		errMssg := fmt.Sprintf ("Tried registering comp '%s', but it provided a nil " +
 			"init func.", compID)
-		dpOutAssit.Output ("aaaaaa", "err", errMssg)
+		dLSIOutAssit_AAAAAA.Output ("aaaaaa", "err", errMssg)
 		os.Exit (1)
 	}
 	if dnitFunc == nil {
 		errMssg := fmt.Sprintf ("Tried registering comp '%s', but it provided a nil " +
 			"dnit func.", compID)
-		dpOutAssit.Output ("aaaaaa", "err", errMssg)
+		dLSIOutAssit_AAAAAA.Output ("aaaaaa", "err", errMssg)
 		os.Exit (1)
 	}
 
@@ -118,7 +118,7 @@ func iRegComp_AAAAAA (compID string, initFunc, dnitFunc func (), depID []string)
 	errX := dMyles_AAAAAA.AddElement (compID, depID)
 	if errX == system.ErrAlreadyAdded {
 		errMssg := fmt.Sprintf ("Comp '%s' registering itself for the 2nd time.", compID)
-		dpOutAssit.Output ("aaaaaa", "err", errMssg)
+		dLSIOutAssit_AAAAAA.Output ("aaaaaa", "err", errMssg)
 		os.Exit (1)
 	}
 	dInitDnitFunc_AAAAAA [compID] = []func () {initFunc, dnitFunc}

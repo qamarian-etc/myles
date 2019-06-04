@@ -4,10 +4,10 @@ package main
    	Comp AAAAAC (Easy-to-read Output)
 	Comp AAAAAE (Onion Path Decoder) */
 
-var aaaaagDPOutAssist interface {
+var dLSIOutAssist_AAAAAG interface {
 	Output (string, string, string, ... string)
 } = iNewLSIA_AAAAAC ()
 
-var aaaaagDPOnionDecoder interface {
+var dLSIOnionDecoder_AAAAAG interface {
 	Decode (string) (string, error)
 } = iNewLSIA_AAAAAE ()
