@@ -41,11 +41,11 @@ func init () {
 
 func iInit_AAAAAG () { // The initialization basically means caching the configuration file.
 	// Decoding the configuration filepath from its onion form into its real form.
-	conFilepath, errD := aaaaagaaaaagDPOnionDecoder.Decode (dCONFILE_AAAAAG)
+	conFilepath, errD := aaaaagDPOnionDecoder.Decode (dCONFILE_AAAAAG)
 	if errD != nil {
 		errMssg := fmt.Sprintf ("Could not decode my configuration file's filepath " +
 			"into its genuine form. [%s] (Conf Data Provider)", errD.Error ())
-		aaaaagDPOnionDecoder.Output ("aaaaag", "err", errMssg)
+		aaaaagDPOutAssist.Output ("aaaaag", "err", errMssg)
 		os.Exit (1)
         }
 
@@ -54,7 +54,7 @@ func iInit_AAAAAG () { // The initialization basically means caching the configu
 	if errX != nil {
 		errMssg := fmt.Sprintf ("Could not load my configuration file. [%s] (Conf " +
 			"Data Provider)", errX.Error ())
-		aaaaagDPOnionDecoder.Output ("aaaaag", "err", errMssg)
+		aaaaagDPOutAssist.Output ("aaaaag", "err", errMssg)
 		os.Exit (1)
         }
 
