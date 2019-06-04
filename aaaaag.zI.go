@@ -3,11 +3,7 @@ package main
 /* This component makes possible the use of configuration file, in your app. The component uses the
 	YAML syntax for its configuration file.
 
-   DEPENDENCIES
-   	Comp AAAAAC (Easy-to-read Output)
-	Comp AAAAAE (Onion path decoder)
-
-   USAGE NOTE
+   	USAGE NOTE
    	1. Ensure the conf file specified in "dCONFILE_AAAAAG", is available on the machine where
 		the app would run.
 
@@ -45,11 +41,11 @@ func init () {
 
 func iInit_AAAAAG () { // The initialization basically means caching the configuration file.
 	// Decoding the configuration filepath from its onion form into its real form.
-	conFilepath, errD := iDecode_AAAAAE (dCONFILE_AAAAAG)
+	conFilepath, errD := aaaaagaaaaagDPOnionDecoder.Decode (dCONFILE_AAAAAG)
 	if errD != nil {
 		errMssg := fmt.Sprintf ("Could not decode my configuration file's filepath " +
 			"into its genuine form. [%s] (Conf Data Provider)", errD.Error ())
-		iOutputT2_AAAAAC ("aaaaag", "err", errMssg)
+		aaaaagDPOnionDecoder.Output ("aaaaag", "err", errMssg)
 		os.Exit (1)
         }
 
@@ -58,7 +54,7 @@ func iInit_AAAAAG () { // The initialization basically means caching the configu
 	if errX != nil {
 		errMssg := fmt.Sprintf ("Could not load my configuration file. [%s] (Conf " +
 			"Data Provider)", errX.Error ())
-		iOutputT2_AAAAAC ("aaaaag", "err", errMssg)
+		aaaaagDPOnionDecoder.Output ("aaaaag", "err", errMssg)
 		os.Exit (1)
         }
 
