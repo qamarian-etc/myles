@@ -1,13 +1,15 @@
 package main
 
-func iNewPInterface_AAAAAE () (*tPInterface_AAAAAE) { /* To get a portable interface of this comp, it
-	is recommended that you do it with this interface. */
+func iNewLSIA_AAAAAE () (*tLSIA_AAAAAE) { /* To get a local standardized interface A of this comp, it
+	is recommended that you do it with this remote interface. */
 
-	return &tPInterface_AAAAAE {}
+	return &tLSIA_AAAAAE {}
 }
 
-type tPInterface_AAAAAE struct {}
+// Local Standardized Interface A { ...
+type tLSIA_AAAAAE struct {}
 
-func (comp *tPInterface_AAAAAE) Decode (path string) (string, error) {
+func (comp *tLSIA_AAAAAE) Decode (path string) (string, error) {
 	return iDecode_AAAAAE (path)
 }
+// ... }
