@@ -1,13 +1,15 @@
 package main
 
-func iNewPInterface_AAAAAC () (*tPInterface_AAAAAC) { /* To get a portable interface of this comp, it
-	is recommended that you do it with this interface. */
+func iNewLSIA_AAAAAC () (*tLSI_AAAAAC) { /* To get a local standardized interface A of this comp, it
+	is recommended that you do it with this remote interface. */
 
-	return &tPInterface_AAAAAC {}
+	return &tLSI_AAAAAC {}
 }
 
-type tPInterface_AAAAAC struct {}
+// Local Standardized Interface A { ...
+type tLSI_AAAAAC struct {}
 
-func (comp *tPInterface_AAAAAC) Output (compID, outputType, output string, moreOutput ... string) {
+func (comp *tLSI_AAAAAC) Output (compID, outputType, output string, moreOutput ... string) {
 	iOutputT2_AAAAAC (compID, outputType, output, moreOutput ...)
 }
+// ... }
