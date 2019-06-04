@@ -14,12 +14,6 @@ package main
                 ** Controllers can be created in file "aaaaal.zController.go", and registered in
                         file "aaaaal.zRouter.go".
 
-        DEPENDENCIES
-        Comp AAAAAC (Customized output assistant)
-        Comp AAAAAG (Configuration data provider)
-        Comp AAAAAI (Critical Event Zain)
-        Comp AAAAAK (Logger)
-
 	NOTES
 	1. Ensure the following conf data are registered with comp AAAAAG:
 		AAAAAL.NetAddr
