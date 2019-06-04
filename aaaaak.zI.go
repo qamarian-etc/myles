@@ -78,10 +78,10 @@ func iInit_AAAAAK () {
 		data needed to run the external logger. */
 
 	// Starting the logger.
-	go cLogger ()
+	go cAAAAAK ()
 }
 
-func cLogger () {
+func cAAAAAK () {
 	// If a panic should occur, it is prevented from affecting other routines.
 	defer func () {
 		recover ()
