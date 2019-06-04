@@ -6,20 +6,20 @@ package main
         Comp AAAAAI (Critical Event Zain)
         Comp AAAAAK (Logger) */
 
-var dpOutAssist interface {
+var aaaaalDPOutAssist interface {
 	Output (string, string, string, ... string)
 } = iNewLSIA_AAAAAC ()
 
-var dpConfProvider interface {
+var aaaaalDPConfProvider interface {
 	ScalarData (string) (string, error)
 	SliceData (string) ([]string, error)
 	MapData (string) (map[string]string, error)
 } = iNewLSIA_AAAAAG ()
 
-var dpCEZain interface {
+var aaaaalDPCEZain interface {
 	BeInformed (string)
 } = iNewLSIA_AAAAAI ()
 
-var dpLogger interface {
+var aaaaalDPLogger interface {
 	Record (string) (error)
 } = iNewLSIA_AAAAAK ()
