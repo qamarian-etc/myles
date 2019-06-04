@@ -40,30 +40,30 @@ func init () {
 
 func iInit_AAAAAL () {
 	// Fetching network address and port to use. { ...
-	netAddr, errA := iScalarData_AAAAAG ("AAAAAL.NetAddr")
-	netPort, errB := iScalarData_AAAAAG ("AAAAAL.NetPort")
+	netAddr, errA := dpConfProvider.ScalarData ("AAAAAL.NetAddr")
+	netPort, errB := dpConfProvider.ScalarData ("AAAAAL.NetPort")
 
 	if errA != nil {
 		output := fmt.Sprintf ("Tried fetching value of 'AAAAAL.NetAddr' from the conf " +
                                 "file, but an error occured. [%s] (HTTP Interface)", errA.Error ())
-		iOutputT2_AAAAAC ("aaaaal", "err", output)
+		dpOutAssist.Output ("aaaaal", "err", output)
 		os.Exit (1)
 	}
 	if errB != nil {
 		output := fmt.Sprintf ("Tried fetching value of 'AAAAAL.NetPort' from the conf " +
                                 "file, but an error occured. [%s] (HTTP Interface)", errB.Error ())
-		iOutputT2_AAAAAC ("aaaaal", "err", output)
+		dpOutAssist.Output ("aaaaal", "err", output)
 		os.Exit (1)
 	}
 	// ... }
 
 	// Fetching max duration allowed for net input/output. { ...
-        netIODurationBeforeTimeout, errP := iScalarData_AAAAAG ("AAAAAL.MaxDurationForNetIO")
+        netIODurationBeforeTimeout, errP := dpConfProvider.ScalarData ("AAAAAL.MaxDurationForNetIO")
         if errP != nil {
                 output := fmt.Sprintf ("Tried fetching value of 'AAAAAL.MaxDurationForNetIO' from" +
                         " the conf file, but an error occured. [%s] (HTTP Interface)",
                         errP.Error ())
-                iOutputT2_AAAAAC ("aaaaal", "err", output)
+                dpOutAssist.Output ("aaaaal", "err", output)
                 os.Exit (1)
         }
 
@@ -73,19 +73,19 @@ func iInit_AAAAAL () {
                 output := fmt.Sprintf ("Tried casting value of 'AAAAAL.MaxDurationForNetIO' into " +
                         "an integer, but I couldn't. Are you sure an integer value was provided " +
                         "in the conf file? [%s] (HTTP Interface)", errH.Error ())
-                iOutputT2_AAAAAC ("aaaaal", "err", output)
+                dpOutAssist.Output ("aaaaal", "err", output)
                 os.Exit (1)
         }
         // ... }
         // ... }
 
         // Fetching max size allowed for HTTP request headers. { ...
-        httpMaxReqHeaderSize, errQ := iScalarData_AAAAAG ("AAAAAL.HttpMaxReqHeaderSize")
+        httpMaxReqHeaderSize, errQ := dpConfProvider.ScalarData ("AAAAAL.HttpMaxReqHeaderSize")
         if errQ != nil {
         	output := fmt.Sprintf ("Tried fetching value of 'AAAAAL.HttpMaxReqHeaderSize' " +
                         "from the conf file, but an error occured. [%s] (HTTP Interface)",
                         errQ.Error ())
-                iOutputT2_AAAAAC ("aaaaal", "err", output)
+                dpOutAssist.Output ("aaaaal", "err", output)
                 os.Exit (1)
         }
 
@@ -95,7 +95,7 @@ func iInit_AAAAAL () {
         	output := fmt.Sprintf ("Tried casting value of 'AAAAAL.HttpMaxReqHeaderSize' into" +
                         " an integer, but I couldn't. Are you sure an integer value was provided " +
                         "in the conf file? [%s] (HTTP Interface)", errI.Error ())
-                iOutputT2_AAAAAC ("aaaaal", "err", output)
+                dpOutAssist.Output ("aaaaal", "err", output)
                 os.Exit (1)
         }
         // ... }
@@ -122,21 +122,21 @@ func iInit_AAAAAL () {
         // Determining if HTTP or HTTPS should be be used. { ...
 
         // Fetching filepath of TLS cert bundle. { ...
-        certBundle, errO := iScalarData_AAAAAG ("AAAAAL.TLSCertBundle")
+        certBundle, errO := dpConfProvider.ScalarData ("AAAAAL.TLSCertBundle")
         if errO != nil {
         	output := fmt.Sprintf ("Tried fetching value of 'AAAAAL.TLSCertBundle' from the " +
                         "conf file, but an error occured. [%s] (HTTP Interface)", errO.Error ())
-                iOutputT2_AAAAAC ("aaaaal", "err", output)
+                dpOutAssist.Output ("aaaaal", "err", output)
                 os.Exit (1)
         }
         // ... }
 
         // Fetching filepath of TLS private key. { ...
-        privateKey, errT := iScalarData_AAAAAG ("AAAAAL.TLSPrivateKey")
+        privateKey, errT := dpConfProvider.ScalarData ("AAAAAL.TLSPrivateKey")
         if errT != nil {
         	output := fmt.Sprintf ("Tried fetching value of 'AAAAAL.TLSPrivateKey' from the " +
                         "conf file, but an error occured. [%s] (HTTP Interface)", errT.Error ())
-                iOutputT2_AAAAAC ("aaaaal", "err", output)
+                dpOutAssist.Output ("aaaaal", "err", output)
                 os.Exit (1)
         }
         // ... }
@@ -147,14 +147,14 @@ func iInit_AAAAAL () {
                 httpProtocolInUse = "HTTPS"
         } else {
                 httpProtocolInUse = "HTTP"
-                iOutputT2_AAAAAC ("aaaaal", "wrn", "HTTP in use, since value of " +
+                dpOutAssist.Output ("aaaaal", "wrn", "HTTP in use, since value of " +
                         "AAAAAL.TLSCertBundle and/or AAAAAL.TLSPrivateKey are not set. (HTTP " +
                         "Interface)")
         }
         // ... }
 
         // Startup notification.
-        iOutputT2_AAAAAC ("aaaaal", "std", fmt.Sprintf ("Net Addr: %s:%s (HTTP Interface)",
+        dpOutAssist.Output ("aaaaal", "std", fmt.Sprintf ("Net Addr: %s:%s (HTTP Interface)",
 		netAddr, netPort))
 
         // Starting server, as a different routine.
@@ -170,14 +170,14 @@ func iInit_AAAAAL () {
         	}
 
                 // By the time execution reachs here, the server must have shutdown.
-	        iOutputT2_AAAAAC ("aaaaal", "std", "State: Server has shutdown!")
+	        dpOutAssist.Output ("aaaaal", "std", "State: Server has shutdown!")
 
 	        /* If server shutdowns due to an error, a log is recorded, and a critical event
                         zain is notified. */
         	if errJ != nil && errJ != http.ErrServerClosed {
                         errMssg := fmt.Sprintf ("I've shutdown, error occured while doing my" +
                                 " job. [%s] (HTTP Interface)", errJ.Error ())
-                	iOutputT2_AAAAAC ("aaaaal", "err", errMssg)
+                	dpOutAssist.Output ("aaaaal", "err", errMssg)
                         iBeInformed_AAAAAI ("AAAAAL: " + errMssg)
 	                iRecord_AAAAAK ("AAAAAL: " + errMssg)
         	}
