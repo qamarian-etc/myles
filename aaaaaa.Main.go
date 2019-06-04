@@ -10,14 +10,10 @@ func iNewLSIA_AAAAAA () (*tLSIA_AAAAAA) { /* To get a local standardized interfa
 type tLSIA_AAAAAA struct {}
 
 func (comp *tLSIA_AAAAAA) RegComp (compID string, initFunc, dnitFunc func (), dep []string) error {
-	// This interface can be used to register other comps with comp AAAAAA.
-
 	return iRegComp_AAAAAA (compID, initFunc, dnitFunc, dep)
 }
 
-func (comp *tLSIA_AAAAAA) Shutdown () { /* This interface can be used to gracefully shutdown
-	your mylware. */
-
+func (comp *tLSIA_AAAAAA) Shutdown () {
 	iShutdown_AAAAAA ()
 }
 // ... }
