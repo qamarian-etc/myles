@@ -19,3 +19,15 @@ MapData:
   # YAML short syntax for dict are of course supported.
 
 # Remember to delete the examples.
+
+# Default conf data of some mylcomes.
+AAAAAK:
+  LogfilePath: "./aaaaak.zzLog.txt" # Default log file.
+
+AAAAAL:
+  NetAddr: "0.0.0.0"
+  NetPort: 50001
+  HttpMaxReqHeaderSize: 1048576 # Bytes
+  MaxDurationForNetIO: 60 # Seconds
+  TLSCertBundle: ""
+  TLSPrivateKey: ""

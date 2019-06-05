@@ -14,7 +14,7 @@ import (
 )
 
 func init () {
-	iRegComp ("aaaaae", iInit_AAAAAE, iDnit_AAAAAE, nil)
+	iRegComp_AAAAAA ("aaaaae", iInit_AAAAAE, iDnit_AAAAAE, nil)
 }
 
 func iInit_AAAAAE () {}

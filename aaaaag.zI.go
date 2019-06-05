@@ -3,11 +3,7 @@ package main
 /* This component makes possible the use of configuration file, in your app. The component uses the
 	YAML syntax for its configuration file.
 
-   DEPENDENCIES
-   	Comp AAAAAC (Easy-to-read Output)
-	Comp AAAAAE (Onion path decoder)
-
-   USAGE NOTE
+   	USAGE NOTE
    	1. Ensure the conf file specified in "dCONFILE_AAAAAG", is available on the machine where
 		the app would run.
 
@@ -34,22 +30,22 @@ import (
         "os"
 )
 
-const dCONFILE_AAAAAG string = "./aaaaag.dConf.yml" /* You can modify this constant if your app's
+const dCONFILE_AAAAAG string = "./aaaaag.zzConf.yml" /* You can modify this constant if your app's
 	configuration file wouldn't be file "aaaaag.dConf.yml" or if file "aaaaag.dConf.yml"
 	wouldn't be present in the app's current working directory. Filepath format supported:
 	onion.*/
 
 func init () {
-	iRegComp ("aaaaag", iInit_AAAAAG, iDnit_AAAAAG, []string {"aaaaac", "aaaaae"})
+	iRegComp_AAAAAA ("aaaaag", iInit_AAAAAG, iDnit_AAAAAG, []string {"aaaaac", "aaaaae"})
 }
 
 func iInit_AAAAAG () { // The initialization basically means caching the configuration file.
 	// Decoding the configuration filepath from its onion form into its real form.
-	conFilepath, errD := iDecode_AAAAAE (dCONFILE_AAAAAG)
+	conFilepath, errD := dLSIOnionDecoder_AAAAAG.Decode (dCONFILE_AAAAAG)
 	if errD != nil {
 		errMssg := fmt.Sprintf ("Could not decode my configuration file's filepath " +
 			"into its genuine form. [%s] (Conf Data Provider)", errD.Error ())
-		iOutputT2_AAAAAC ("aaaaag", "err", errMssg)
+		dLSIOutAssist_AAAAAG.Output ("aaaaag", "err", errMssg)
 		os.Exit (1)
         }
 
@@ -58,7 +54,7 @@ func iInit_AAAAAG () { // The initialization basically means caching the configu
 	if errX != nil {
 		errMssg := fmt.Sprintf ("Could not load my configuration file. [%s] (Conf " +
 			"Data Provider)", errX.Error ())
-		iOutputT2_AAAAAC ("aaaaag", "err", errMssg)
+		dLSIOutAssist_AAAAAG.Output ("aaaaag", "err", errMssg)
 		os.Exit (1)
         }
 
@@ -67,7 +63,7 @@ func iInit_AAAAAG () { // The initialization basically means caching the configu
         dConf_AAAAAG = conf
 
         // Indicating that this component is now ready to provide its services.
-        dCompAvailable_AAAAAG = true
+        dAvailStatus_AAAAAG = true
 }
 
 func iDnit_AAAAAG () {}
@@ -84,15 +80,15 @@ func iScalarData_AAAAAG (dataName string) (string, error) { /* This interface he
 
 	outpt 1: Any error that occurs during the fetch. On successful fetch, value would be nil. On
 		failed fetch, value would the error that occured. If the data is not set, value
-		would be error "eDATANOTSET_AAAAAG". If the component has just started up, and it is
-		yet to be available, value would be error "eCOMPNOTAVAILABLE_AAAAAG". */
+		would be error "dErrNotSet_AAAAAG". If the component has just started up, and it is
+		yet to be available, value would be error "dErrNotAvail_AAAAAG". */
 
-	if dCompAvailable_AAAAAG == false {
-		return "", eCOMPNOTAVAILABLE_AAAAAG
+	if dAvailStatus_AAAAAG == false {
+		return "", dErrNotAvail_AAAAAG
 	}
 
 	if ! dConf_AAAAAG.IsSet (dataName) {
-		return "", eDATANOTSET_AAAAAG
+		return "", dErrNotSet_AAAAAG
 	}
 
 	return dConf_AAAAAG.GetString (dataName), nil
@@ -110,15 +106,15 @@ func iSliceData_AAAAAG (dataName string) (data []string, err error) { /* This in
 
 	outpt 1: Any error that occurs during the fetch. On successful fetch, value would be nil. On
 		failed fetch, value would the error that occured. If the data is not set, value would
-		be error "eDATANOTSET_AAAAAG". If the component has just started up, and it is yet to
-		be available, value would be error "eCOMPNOTAVAILABLE_AAAAAG". */
+		be error "dErrNotSet_AAAAAG". If the component has just started up, and it is yet to
+		be available, value would be error "dErrNotAvail_AAAAAG". */
 
-	if dCompAvailable_AAAAAG == false {
-		return data, eCOMPNOTAVAILABLE_AAAAAG
+	if dAvailStatus_AAAAAG == false {
+		return data, dErrNotAvail_AAAAAG
 	}
 
 	if ! dConf_AAAAAG.IsSet (dataName) {
-		return []string {}, eDATANOTSET_AAAAAG
+		return []string {}, dErrNotSet_AAAAAG
 	}
 
 	return dConf_AAAAAG.GetStringSlice (dataName), nil
@@ -136,25 +132,23 @@ func iMapData_AAAAAG (dataName string) (data map[string]string, err error) { /* 
 
 	outpt 1: Any error that occurs during the fetch. On successful fetch, value would be nil. On
 		failed fetch, value would the error that occured. If the data is not set, value would
-		be error "eDATANOTSET_AAAAAG". If the component has just started up, and it is yet to
-		be available, value would be error "eCOMPNOTAVAILABLE_AAAAAG". */
+		be error "dErrNotSet_AAAAAG". If the component has just started up, and it is yet to
+		be available, value would be error "dErrNotAvail_AAAAAG". */
 
-	if dCompAvailable_AAAAAG == false {
-		return data, eCOMPNOTAVAILABLE_AAAAAG
+	if dAvailStatus_AAAAAG == false {
+		return data, dErrNotAvail_AAAAAG
 	}
-
 	if ! dConf_AAAAAG.IsSet (dataName) {
-		return data, eDATANOTSET_AAAAAG
+		return data, dErrNotSet_AAAAAG
 	}
-
 	return dConf_AAAAAG.GetStringMapString (dataName), nil
 }
 
 var (
 	dConf_AAAAAG *viper.Viper // Configuration data cache. It would be initialized by init ().
-	dCompAvailable_AAAAAG bool = false /* This data signifies if this component is availble to
+	dAvailStatus_AAAAAG bool = false /* This data signifies if this component is availble to
 		provide its service or not. */
 
-	eCOMPNOTAVAILABLE_AAAAAG error = errors.New ("This component is not available yet")
-	eDATANOTSET_AAAAAG error = errors.New ("The configuration data requested is not set")
+	dErrNotAvail_AAAAAG error = errors.New ("This component is not available yet.")
+	dErrNotSet_AAAAAG error = errors.New ("The configuration data requested is not set.")
 )

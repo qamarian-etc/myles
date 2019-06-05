@@ -7,10 +7,11 @@ package main
 import (
 	"fmt"
 	"github.com/mgutz/ansi"
+	"strings"
 )
 
 func init () {
-	iRegComp ("aaaaac", iInit_AAAAAC, iDnit_AAAAAC, nil)
+	iRegComp_AAAAAA ("aaaaac", iInit_AAAAAC, iDnit_AAAAAC, nil)
 }
 
 func iInit_AAAAAC () {}
@@ -36,6 +37,8 @@ func iOutputT2_AAAAAC (compID, oType, output string, moreOutput ... string) { /*
 
 	input 3: Additional outputs. Additional outputs would each be displayed on distinct
 		lines. inputs 0 and 1 applies to all other additional outputs. */
+
+	compID = strings.ToLower (compID)
 
 	sOutput_AAAAAC (compID, oType, output)
 
